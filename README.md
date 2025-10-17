@@ -8,7 +8,7 @@ Este proyecto es el backend para un sistema de mini-blog que permite a los usuar
 
 A continuación se muestra el diagrama E/R que representa la estructura de la base de datos del proyecto.
 
-![Diagrama E/R](docs/diagrama.jpg)
+![Diagrama E/R](docs/Diagrama.jpg)
 
 ### Diseño de Entidades y Relaciones
 
