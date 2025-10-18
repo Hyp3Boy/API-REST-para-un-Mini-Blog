@@ -1,13 +1,12 @@
-import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
 
-DOTENV = os.path.join(os.path.dirname(__file__), '.env')
-
 class Settings(BaseSettings):
+    ENVIRONMENT: str = Field(default="development", description="Environment type")
     DATABASE_URL: str = Field(default="", description="Database URL")
+    TEST_DATABASE_URL: str = Field(default="", description="Test Database URL")
 
-    model_config = SettingsConfigDict(env_file=DOTENV)
+    model_config = SettingsConfigDict(env_file='.env')
 
 settings = Settings()
 
