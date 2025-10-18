@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+
+# Entornos virtuales
+.venv
+venv/
+env/
+
+# Archivos de configuración de IDE y herramientas
+.vscode/
+.idea/
+
+# Cache de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Cache de pruebas
+.pytest_cache/
+.coverage
+
+# Archivos de entorno (¡Muy importante para la seguridad!)
+.env
+*.env.*
+
+# Dependencias de MacOS
+.DS_Store
