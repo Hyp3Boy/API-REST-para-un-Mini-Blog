@@ -4,7 +4,13 @@ from sqlalchemy.orm import declarative_base
 from api_rest_mini_blog.config import settings
 
 # Motor de base de datos asíncrono
-engine = create_async_engine(settings.DATABASE_URL, echo=True)
+
+if settings.ENVIRONMENT == "test":
+    DATABASE_URL = settings.TEST_DATABASE_URL
+else:
+    DATABASE_URL = settings.DATABASE_URL
+
+engine = create_async_engine(DATABASE_URL)
 
 # Fábrica de sesiones asíncronas
 async_session = async_sessionmaker(
@@ -17,6 +23,6 @@ async_session = async_sessionmaker(
 Base = declarative_base()
 
 # Dependencia para obtener una sesión de base de datos
-async def get_db() -> AsyncGenerator[AsyncSession, None]:
+async def get_db():
     async with async_session() as session:
         yield session
