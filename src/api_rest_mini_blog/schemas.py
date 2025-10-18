@@ -1,8 +1,7 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 from datetime import datetime
 from typing import List, Optional
 
-# Esquemas para Users
 class UserBase(BaseModel):
     username: str
     email: EmailStr
@@ -10,42 +9,42 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     pass
 
-class User(UserBase):
-    id: int
-    posts: List[Post] = []
-    comments: List[Comment] = []
-
-    class Config:
-        from_attributes = True
-
-# Esquemas para Comments
 class CommentBase(BaseModel):
     text: str
 
 class CommentCreate(CommentBase):
-    user_id: int
+    user_id: int 
 
-class Comment(CommentBase):
-    id: int
-    created_at: datetime
-    user_id: int
-
-    class Config:
-        from_attributes = True
-
-# Esquemas para Posts
 class PostBase(BaseModel):
     title: str
     content: str
 
 class PostCreate(PostBase):
-    user_id: int
+    user_id: int 
+
+class UserInDB(UserBase):
+    id: int
+    
+    model_config = ConfigDict(from_attributes=True)
+
+class Comment(CommentBase):
+    id: int
+    created_at: datetime
+    author: UserInDB
+
+    model_config = ConfigDict(from_attributes=True)
 
 class Post(PostBase):
     id: int
     created_at: datetime
-    user_id: int
+    author: UserInDB 
     comments: List[Comment] = []
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
+    
+class User(UserBase):
+    id: int
+    posts: List[Post] = []
+    comments: List[Comment] = []
+
+    model_config = ConfigDict(from_attributes=True)
