@@ -1,36 +1,30 @@
-[project]
+[tool.poetry]
 name = "api-rest-mini-blog"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "Lenin Chavez",email = "lg.chavez1404@gmail.com"}
-]
-requires-python = ">=3.10"
-dependencies = [
-    "fastapi (>=0.119.0,<0.120.0)",
-    "uvicorn[standard] (>=0.37.0,<0.38.0)",
-    "sqlalchemy[asyncio] (>=2.0.44,<3.0.0)",
-    "asyncpg (>=0.30.0,<0.31.0)",
-    "pydantic-settings (>=2.11.0,<3.0.0)",
-    "python-dotenv (>=1.1.1,<2.0.0)",
-    "email-validator (>=2.3.0,<3.0.0)",
-    "alembic (>=1.17.0,<2.0.0)",
-    "psycopg2-binary (>=2.9.11,<3.0.0)"
-]
-
-[tool.poetry]
+authors = ["Lenin Chavez <lg.chavez1404@gmail.com>"]
 packages = [{include = "api_rest_mini_blog", from = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+fastapi = ">=0.119.0,<0.120.0"
+uvicorn = {version = ">=0.37.0,<0.38.0", extras = ["standard"]}
+sqlalchemy = {version = ">=2.0.44,<3.0.0", extras = ["asyncio"]}
+asyncpg = ">=0.30.0,<0.31.0"
+pydantic-settings = ">=2.11.0,<3.0.0"
+python-dotenv = ">=1.1.1,<2.0.0"
+email-validator = ">=2.3.0,<3.0.0"
+alembic = ">=1.17.0,<2.0.0"
+psycopg2-binary = ">=2.9.11,<3.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.4.2,<9.0.0"
+pytest-asyncio = ">=1.2.0,<2.0.0"
+httpx = ">=0.28.1,<0.29.0"
+aiosqlite = ">=0.21.0,<0.22.0"
+sqlalchemy-utils = ">=0.42.0,<0.43.0"
+pytest-env = ">=1.2.0,<2.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[dependency-groups]
-dev = [
-    "pytest (>=8.4.2,<9.0.0)",
-    "pytest-asyncio (>=1.2.0,<2.0.0)",
-    "httpx (>=0.28.1,<0.29.0)",
-    "aiosqlite (>=0.21.0,<0.22.0)",
-    "sqlalchemy-utils (>=0.42.0,<0.43.0)",
-    "pytest-env (>=1.2.0,<2.0.0)"
-]
