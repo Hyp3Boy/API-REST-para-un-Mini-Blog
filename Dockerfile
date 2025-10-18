@@ -8,8 +8,10 @@ WORKDIR /app
 RUN pip install poetry
 
 COPY poetry.lock pyproject.toml ./
+COPY ./src ./src
+RUN poetry config virtualenvs.in-project true
 
-RUN poetry install --no-root --no-dev --no-interaction --no-ansi
+RUN poetry install --no-interaction --no-ansi
 
 
 FROM python:3.11-slim as runtime

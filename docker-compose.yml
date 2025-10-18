@@ -1,20 +1,13 @@
-version: "3.8"
-
 services:
-  # Servicio de la Base de Datos (PostgreSQL)
   db:
     image: postgres:15-alpine
     container_name: mini_blog_db
-    # Carga las variables desde el archivo .env para configurar la BD
     env_file:
       - .env
-    # Mapeo de puertos: <puerto_host>:<puerto_contenedor>
     ports:
       - "5432:5432"
-    # Volumen para persistir los datos de la BD
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    # Healthcheck para asegurar que la BD está lista antes de que la API se conecte
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 10s
@@ -23,29 +16,20 @@ services:
       start_period: 10s
     restart: unless-stopped
 
-  # Servicio de la API (FastAPI)
   api:
     container_name: mini_blog_api
-    # Construye la imagen usando el Dockerfile en el directorio actual
     build: .
-    # Carga las variables de entorno para la aplicación
     env_file:
       - .env
     ports:
       - "8000:8000"
-    # El servicio 'api' depende de que el servicio 'db' esté saludable
     depends_on:
       db:
         condition: service_healthy
-    # Comando para ejecutar al iniciar el contenedor:
-    # 1. Espera a que la BD esté lista (seguridad extra).
-    # 2. Ejecuta las migraciones de Alembic.
-    # 3. Inicia el servidor Uvicorn.
     command: >
-      sh -c "poetry run alembic upgrade head &&
-             poetry run uvicorn src.api_rest_mini_blog.main:app --host 0.0.0.0 --port 8000"
+      sh -c "alembic upgrade head &&
+             uvicorn src.api_rest_mini_blog.main:app --host 0.0.0.0 --port 8000"
     restart: unless-stopped
 
-# Definición de volúmenes nombrados
 volumes:
   postgres_data:

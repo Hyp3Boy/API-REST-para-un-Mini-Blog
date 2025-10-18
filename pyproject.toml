@@ -5,8 +5,7 @@ description = ""
 authors = [
     {name = "Lenin Chavez",email = "lg.chavez1404@gmail.com"}
 ]
-readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.10"
 dependencies = [
     "fastapi (>=0.119.0,<0.120.0)",
     "uvicorn[standard] (>=0.37.0,<0.38.0)",
