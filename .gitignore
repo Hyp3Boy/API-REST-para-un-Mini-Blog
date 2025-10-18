@@ -1,0 +1,87 @@
+# #################### #
+# Archivos de Entorno  #
+# #################### #
+.env
+.env.*
+!.env.example
+
+# #################### #
+#   Python & Poetry    #
+# #################### #
+# Directorios de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales
+.venv
+venv/
+env/
+
+# Artefactos de empaquetado y distribución
+build/
+dist/
+*.egg-info/
+*.egg
+
+# #################### #
+#      Bibliotecas     #
+# #################### #
+# Archivos de instalación de pip/poetry
+*.whl
+
+# #################### #
+#   Pruebas (Pytest)   #
+# #################### #
+# Caché de Pytest
+.pytest_cache/
+
+# Reportes de cobertura de código
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# #################### #
+#   IDE / Editores     #
+# #################### #
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains (PyCharm, etc.)
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# #################### #
+#   Sistema Operativo  #
+# #################### #
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# #################### #
+#         Logs         #
+# #################### #
+# Archivos de registro
+*.log
+logs/
+
+# #################### #
+#        Otros         #
+# #################### #
+*~
+*.swp
