@@ -15,7 +15,6 @@ async def create_post(post: schemas.PostCreate, db: AsyncSession = Depends(get_d
     """
     Crea una nueva publicación. Requiere el id del autor.
     """
-    # Verificación opcional: ¿existe el usuario?
     if not await services.user_exists(db, user_id=post.user_id):
         raise HTTPException(status_code=404, detail=f"User with id {post.user_id} not found")
     
