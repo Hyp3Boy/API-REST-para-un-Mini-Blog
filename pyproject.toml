@@ -14,7 +14,9 @@ dependencies = [
     "asyncpg (>=0.30.0,<0.31.0)",
     "pydantic-settings (>=2.11.0,<3.0.0)",
     "python-dotenv (>=1.1.1,<2.0.0)",
-    "email-validator (>=2.3.0,<3.0.0)"
+    "email-validator (>=2.3.0,<3.0.0)",
+    "alembic (>=1.17.0,<2.0.0)",
+    "psycopg2-binary (>=2.9.11,<3.0.0)"
 ]
 
 [tool.poetry]
@@ -28,5 +30,8 @@ build-backend = "poetry.core.masonry.api"
 dev = [
     "pytest (>=8.4.2,<9.0.0)",
     "pytest-asyncio (>=1.2.0,<2.0.0)",
-    "httpx (>=0.28.1,<0.29.0)"
+    "httpx (>=0.28.1,<0.29.0)",
+    "aiosqlite (>=0.21.0,<0.22.0)",
+    "sqlalchemy-utils (>=0.42.0,<0.43.0)",
+    "pytest-env (>=1.2.0,<2.0.0)"
 ]
